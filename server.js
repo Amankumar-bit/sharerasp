@@ -31,7 +31,8 @@ app.use(cors(corsOptions));
 cron.schedule('* * * * *',async()=>{
   console.log("Starting deletion of files");
   const pastDate=new Date(Date.now()-24*60*60*1000);
-  const files= await File.find({createdAt:{$lt:pastDate}});
+  const files= await File.find();
+  // {createdAt:{$lt:pastDate}}
   if(files.length){
       console.log("reached here");
       for(const file of files){
