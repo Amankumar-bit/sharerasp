@@ -3,7 +3,7 @@
 window.pass=""
 function displaypassinput(){
 
-	let uid= localStorage.getItem("link").slice(28);
+	let uid= localStorage.getItem("link").slice(38);
 	
 	$.ajax({
 

@@ -28,7 +28,7 @@ e.preventDefault();
 document.querySelector(".msg").style.display="none"; 
 const sender=document.getElementById("ymail").value;
 const receiver=document.getElementById("rmail").value;
-const getuuid=responselink.slice(28);
+const getuuid=responselink.slice(38);
 // const url = fileURL.value;
 
   const formData = {
@@ -324,7 +324,7 @@ window.isclicked=false;
 function afterfirst(){
   window.isclicked=true;
  
-  let uid= localStorage.getItem("link").slice(28);
+  let uid= localStorage.getItem("link").slice(38);
 
 
   let part1=document.querySelector(".part1");
@@ -350,7 +350,7 @@ function afterfirst(){
 function mytoggle(){
 
 
- let uid= localStorage.getItem("link").slice(28);
+ let uid= localStorage.getItem("link").slice(38);
 
 
  let part1=document.querySelector(".part1");
