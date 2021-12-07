@@ -28,7 +28,7 @@ app.use(cors(corsOptions));
 //node corn
 
 
-cron.schedule('* * * * * *',async()=>{
+cron.schedule('* * * * *',async()=>{
   console.log("Starting deletion of files");
   const pastDate=new Date(Date.now()-24*60*60*1000);
   const files= await File.find();
