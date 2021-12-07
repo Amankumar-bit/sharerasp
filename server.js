@@ -28,25 +28,25 @@ app.use(cors(corsOptions));
 //node corn
 
 
-// cron.schedule('0 0 */2 * * *',async()=>{
-//   console.log("Starting deletion of files");
-//   const pastDate=new Date(Date.now()-24*60*60*1000);
-//   const files= await File.find({createdAt:{$lt:pastDate}});
-//   if(files.length){
-//       console.log("reached here");
-//       for(const file of files){
-//         try{
-//           fs.unlinkSync(file.path);
-//           await file.remove();
-//           console.log(`successfully deleted${file.filename}`);
-//         }catch(err){
-//             console.log("while deleting file"+err);
-//         }
-//       }
-//   }else{
-//       console.log("Database empty");
-//   }
-// });
+cron.schedule('0 0 */2 * * *',async()=>{
+  console.log("Starting deletion of files");
+  const pastDate=new Date(Date.now()-24*60*60*1000);
+  const files= await File.find({createdAt:{$lt:pastDate}});
+  if(files.length){
+      console.log("reached here");
+      for(const file of files){
+        try{
+          fs.unlinkSync(file.path);
+          await file.remove();
+          console.log(`successfully deleted${file.filename}`);
+        }catch(err){
+            console.log("while deleting file"+err);
+        }
+      }
+  }else{
+      console.log("Database empty");
+  }
+});
 
 //Routes
 app.use('/',require('./routes/files'));
