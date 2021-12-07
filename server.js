@@ -16,7 +16,7 @@ connectDB();
 //cors
 
 const corsOptions={
-  origin:process.env.ALLOWED_CLIENTS.split(',')
+  origin:'https://sharerasp.herokuapp.com'
 }
 
 app.use(cors(corsOptions));
