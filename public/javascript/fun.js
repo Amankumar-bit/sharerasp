@@ -7,7 +7,7 @@ const togbutdiv=document.querySelector(".pass-tog");
 
 window.checked=false;
 let checkanother=true;
-const host="http://localhost:3000";
+const host="https://sharerasp.herokuapp.com";
 const uploadURL=host+"/api/files";
 const emailURL=host+"/api/files/send";
 window.protection=false;
