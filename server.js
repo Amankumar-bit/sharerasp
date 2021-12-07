@@ -4,6 +4,7 @@ const app=express();
 const path=require('path');
 const PORT =process.env.PORT || 3000;
 //template engine
+const cors=require('cors');
 app.use(express.static('public'));
 app.use(express.json());
 app.set('views',path.join(__dirname,'/views'));
@@ -12,6 +13,13 @@ const connectDB=require('./config/db');
 connectDB(); 
 
 
+//cors
+
+const corsOptions={
+  origin:process.env.ALLOWED_CLIENTS.split(',')
+}
+
+app.use(cors(corsOptions));
 
 //Routes
 app.use('/',require('./routes/files'));
