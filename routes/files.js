@@ -104,8 +104,9 @@ router.post('/send',async (req,res)=>{
     if(!uuid||!emailTo||!emailFrom){
         return res.status(422).send({error:'All fields are required'});
     }
+    // console.log(uuid);
     const file=await File.findOne({uuid:uuid});
-    
+    // console.log(file);
     if(file.sender){
         return res.status(422).send({error:'Email already sent'});
     }
