@@ -1,6 +1,9 @@
 require('dotenv').config();
 const express =require('express');
 const app=express();
+const File=require('./models/file');
+const fs=require('fs');
+var cron = require('node-cron');
 const path=require('path');
 const PORT =process.env.PORT || 3000;
 //template engine
@@ -22,6 +25,28 @@ const corsOptions={
 
 app.use(cors(corsOptions));
 
+//node corn
+
+
+cron.schedule('* * * * *',async()=>{
+  console.log("Starting deletion of files");
+  const pastDate=new Date(Date.now()-24*60*60*1000);
+  const files= await File.find({createdAt:{$lt:pastDate}});
+  if(files.length){
+      console.log("reached here");
+      for(const file of files){
+        try{
+          fs.unlinkSync(file.path);
+          await file.remove();
+          console.log(`successfully deleted${file.filename}`);
+        }catch(err){
+            console.log("while deleting file"+err);
+        }
+      }
+  }else{
+      console.log("no length");
+  }
+});
 
 //Routes
 app.use('/',require('./routes/files'));
@@ -31,3 +56,10 @@ app.use('/files',require('./routes/show'));
  app.listen(PORT,() => {
    console.log(`Listening on port ${PORT}`);
 })
+
+
+
+
+
+
+
