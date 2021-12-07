@@ -62,7 +62,10 @@ function qrcodedisplay(){
 displaypassinput();
 
 // console.log("reached here");
+// 
 
+//  uploads
+// !uploads/.gitkeep
 // console.log(localStorage.getItem("link"));
 var qrcode = new QRCode(document.getElementById("qrcode")
 , {
